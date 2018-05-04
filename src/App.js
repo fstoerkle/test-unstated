@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { Provider, Subscribe } from 'unstated';
 
-import logo from './logo.svg';
 import './App.css';
 import { Store } from './Store';
 import { Todos } from './Todos';
+
+function LoadingIndicator() {
+  return <img src="https://media3.giphy.com/media/131tNuGktpXGhy/giphy.gif" alt="loading"/>;
+}
 
 class App extends Component {
   render() {
@@ -16,6 +19,7 @@ class App extends Component {
             <div>
               <Todos store={store} />
               <button onClick={() => store.addTodo('hallo')}>Add new todo</button>
+              {store.state.wip && <LoadingIndicator/>}
             </div>
           )}
           </Subscribe>
